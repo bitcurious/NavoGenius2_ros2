@@ -1,0 +1,138 @@
+<?xml version="1.0" ?>
+<robot name="navogenius2" xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+<xacro:include filename="$(find navogenius2_description)/urdf/materials.xacro" />
+<xacro:include filename="$(find navogenius2_description)/urdf/navogenius2.trans" />
+<xacro:include filename="$(find navogenius2_description)/urdf/navogenius2.gazebo" />
+<link name="base_link">
+  <inertial>
+    <origin xyz="0.0021680974414850173 -1.7331024210714764e-17 0.050925426287109714" rpy="0 0 0"/>
+    <mass value="2.2250603822554904"/>
+    <inertia ixx="0.007663" iyy="0.008025" izz="0.014613" ixy="-0.0" iyz="-0.0" ixz="-0.000126"/>
+  </inertial>
+  <visual>
+    <origin xyz="0 0 0" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="file://$(find navogenius2_description)/meshes/base_link.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="silver"/>
+  </visual>
+  <collision>
+    <origin xyz="0 0 0" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="file://$(find navogenius2_description)/meshes/base_link.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<link name="right_wheel_1">
+  <inertial>
+    <origin xyz="-5.790023100122029e-18 -0.012499999999999997 0.0" rpy="0 0 0"/>
+    <mass value="0.1826050729899067"/>
+    <inertia ixx="0.000124" iyy="0.000228" izz="0.000124" ixy="-0.0" iyz="0.0" ixz="0.0"/>
+  </inertial>
+  <visual>
+    <origin xyz="-0.0 0.1 -0.05" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="file://$(find navogenius2_description)/meshes/right_wheel_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="silver"/>
+  </visual>
+  <collision>
+    <origin xyz="-0.0 0.1 -0.05" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="file://$(find navogenius2_description)/meshes/right_wheel_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<link name="left_wheel_1">
+  <inertial>
+    <origin xyz="-5.790023100122029e-18 0.012499999999999997 0.0" rpy="0 0 0"/>
+    <mass value="0.1826050729899067"/>
+    <inertia ixx="0.000124" iyy="0.000228" izz="0.000124" ixy="0.0" iyz="-0.0" ixz="0.0"/>
+  </inertial>
+  <visual>
+    <origin xyz="-0.0 -0.1 -0.05" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="file://$(find navogenius2_description)/meshes/left_wheel_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="silver"/>
+  </visual>
+  <collision>
+    <origin xyz="-0.0 -0.1 -0.05" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="file://$(find navogenius2_description)/meshes/left_wheel_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<link name="lidar_1">
+  <inertial>
+    <origin xyz="-4.82823586035741e-07 2.8950115500610146e-18 0.012499999999999997" rpy="0 0 0"/>
+    <mass value="0.052032628325080946"/>
+    <inertia ixx="1.1e-05" iyy="1.1e-05" izz="1.6e-05" ixy="0.0" iyz="0.0" ixz="-0.0"/>
+  </inertial>
+  <visual>
+    <origin xyz="-0.050522 -0.0 -0.085" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="file://$(find navogenius2_description)/meshes/lidar_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="silver"/>
+  </visual>
+  <collision>
+    <origin xyz="-0.050522 -0.0 -0.085" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="file://$(find navogenius2_description)/meshes/lidar_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<link name="camera_1">
+  <inertial>
+    <origin xyz="0.0025000000000000022 1.249000902703301e-18 4.957318955473022e-07" rpy="0 0 0"/>
+    <mass value="0.0026016314162540487"/>
+    <inertia ixx="0.0" iyy="0.0" izz="0.0" ixy="-0.0" iyz="0.0" ixz="0.0"/>
+  </inertial>
+  <visual>
+    <origin xyz="-0.105 -0.0 -0.050475" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="file://$(find navogenius2_description)/meshes/camera_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="silver"/>
+  </visual>
+  <collision>
+    <origin xyz="-0.105 -0.0 -0.050475" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="file://$(find navogenius2_description)/meshes/camera_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<joint name="Revolute 1" type="continuous">
+  <origin xyz="0.0 -0.1 0.05" rpy="0 0 0"/>
+  <parent link="base_link"/>
+  <child link="right_wheel_1"/>
+  <axis xyz="0.0 -1.0 0.0"/>
+</joint>
+
+<joint name="Revolute 2" type="continuous">
+  <origin xyz="0.0 0.1 0.05" rpy="0 0 0"/>
+  <parent link="base_link"/>
+  <child link="left_wheel_1"/>
+  <axis xyz="0.0 1.0 0.0"/>
+</joint>
+
+<joint name="Rigid 3" type="fixed">
+  <origin xyz="0.050522 0.0 0.085" rpy="0 0 0"/>
+  <parent link="base_link"/>
+  <child link="lidar_1"/>
+</joint>
+
+<joint name="Rigid 4" type="fixed">
+  <origin xyz="0.105 0.0 0.050475" rpy="0 0 0"/>
+  <parent link="base_link"/>
+  <child link="camera_1"/>
+</joint>
+
+</robot>
